@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fh.shop.api.book.mapper.IBookMapper" >
+
+    <sql id="bookWhere">
+        <where>
+            <if test="bookName != null and bookName != '' ">
+                bookName like concat('%',#{bookName},'%')
+            </if>
+            <if test="minprice > 0">
+                and price >= #{minprice}
+            </if>
+            <if test="maxprice > 0">
+                and price &lt;= #{maxprice}
+            </if>
+        </where>
+    </sql>
+
+    <select id="bookPageCount" resultType="long" parameterType="com.fh.shop.api.book.po.BookPage">
+        select count(*) from t_book
+        <include refid="bookWhere"></include>
+    </select>
+
+    <select id="queryBook" resultType="com.fh.shop.api.book.po.Book" parameterType="com.fh.shop.api.book.po.BookPage">
+        select t.* from (
+        select id,bookName,price from t_book
+        <include refid="bookWhere"></include> order by id desc) t
+        limit #{start},#{length}
+    </select>
+
+    <insert id="addBook" parameterType="com.fh.shop.api.book.po.Book">
+        insert into t_book (bookName,price) values (#{bookName},#{price})
+    </insert>
+
+    <delete id="deleteBook" parameterType="long">
+        delete from t_book where id=#{id}
+    </delete>
+
+    <select id="toUpdateBook" parameterType="long" resultType="com.fh.shop.api.book.po.Book">
+        select id,bookName,price from t_book where id = #{id}
+    </select>
+
+    <update id="updateBook" parameterType="com.fh.shop.api.book.po.Book">
+        update t_book set bookName = #{bookName},price = #{price} where id = #{id}
+    </update>
+
+    <delete id="deleteAll">
+        delete from t_book where id in
+        <foreach collection="array" item="ids" open="(" close=")" separator=",">
+            #{ids}
+        </foreach>
+    </delete>
+
+
+</mapper>
