@@ -1,7 +1,8 @@
 package com.fh.book.biz;
 
-import com.fh.shop.api.book.po.Book;
-import com.fh.shop.api.book.po.BookPage;
+
+import com.fh.book.po.Book;
+import com.fh.book.po.BookPage;
 
 import java.util.Map;
 

@@ -1,6 +1,6 @@
 package com.fh.book.po;
 
-import com.fh.shop.api.common.Page;
+import com.fh.common.Page;
 import lombok.Data;
 
 @Data

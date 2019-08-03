@@ -1,9 +1,9 @@
 package com.fh.book.controller;
 
-import com.fh.shop.api.book.biz.IBookService;
-import com.fh.shop.api.book.po.Book;
-import com.fh.shop.api.book.po.BookPage;
-import com.fh.shop.api.common.ServerResponse;
+import com.fh.book.biz.IBookService;
+import com.fh.book.po.Book;
+import com.fh.book.po.BookPage;
+import com.fh.common.ServerResponse;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

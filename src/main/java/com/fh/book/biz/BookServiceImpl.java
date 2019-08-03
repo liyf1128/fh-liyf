@@ -1,8 +1,8 @@
 package com.fh.book.biz;
 
-import com.fh.shop.api.book.mapper.IBookMapper;
-import com.fh.shop.api.book.po.Book;
-import com.fh.shop.api.book.po.BookPage;
+import com.fh.book.mapper.IBookMapper;
+import com.fh.book.po.Book;
+import com.fh.book.po.BookPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
